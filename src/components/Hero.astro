@@ -2,6 +2,10 @@
 import heroImage from '@assets/images/hero.png';
 import { Image } from '@astrojs/image/components';
 import Button from '@components/ui/Button.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section
@@ -11,12 +15,14 @@ import Button from '@components/ui/Button.astro';
 	<div class="mb-10 flex flex-col items-center lg:mb-0 lg:w-1/2">
 		<div>
 			<h1 class="mb-10 font-monospace text-3xl text-black dark:text-white lg:text-5xl">
-				Hi! My name is <span class="text-orange">Jane Doe</span> and I am a web developer based in New
-				York.
+				{t('hero.greetings')}<span class="text-orange">{t('hero.name')}</span>
+				{t('hero.tittle')}
 			</h1>
 		</div>
 		<div class="mb-10">
-			<Button style={'primary'} size={'lg'} class={'flex'} name="learn more">Learn more</Button>
+			<Button style={'primary'} size={'lg'} class={'flex'} name="learn more">
+				{t('hero.learn')}
+			</Button>
 		</div>
 	</div>
 	<div data-testid="hero-img" class="mb-10 flex w-1/2 items-center justify-center">
